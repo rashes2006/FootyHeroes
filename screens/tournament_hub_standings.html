@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tournament Hub &amp; Standings - FootballHeroes</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Anybody, Space Grotesk, Lexend -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;600;700;800;900&amp;family=Lexend:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary": "#472a00",
+            "tertiary-fixed": "#ffddb8",
+            "secondary-fixed": "#dae2fd",
+            "on-background": "#dfe2ef",
+            "secondary-container": "#3f465c",
+            "surface-dim": "#0f131c",
+            "on-tertiary-container": "#523200",
+            "on-secondary-fixed": "#131b2e",
+            "on-surface": "#dfe2ef",
+            "secondary-fixed-dim": "#bec6e0",
+            "primary-fixed": "#6ffbbe",
+            "surface-container-lowest": "#0a0e17",
+            "error-container": "#93000a",
+            "tertiary": "#ffb95f",
+            "surface-container": "#1c1f29",
+            "primary-container": "#10b981",
+            "surface-variant": "#31353f",
+            "on-primary": "#003824",
+            "surface-container-highest": "#31353f",
+            "on-primary-fixed": "#002113",
+            "secondary": "#bec6e0",
+            "surface-container-low": "#181b25",
+            "inverse-surface": "#dfe2ef",
+            "surface-bright": "#353943",
+            "background": "#0f131c",
+            "on-surface-variant": "#bbcabf",
+            "on-primary-container": "#00422b",
+            "on-tertiary-fixed": "#2a1700",
+            "on-secondary": "#283044",
+            "primary": "#4edea3",
+            "on-primary-fixed-variant": "#005236",
+            "surface-tint": "#4edea3",
+            "on-secondary-container": "#adb4ce",
+            "on-secondary-fixed-variant": "#3f465c",
+            "primary-fixed-dim": "#4edea3",
+            "surface": "#0f131c",
+            "surface-container-high": "#262a34",
+            "outline-variant": "#3c4a42",
+            "inverse-primary": "#006c49",
+            "outline": "#86948a",
+            "tertiary-container": "#e29100",
+            "on-error": "#690005",
+            "on-error-container": "#ffdad6",
+            "inverse-on-surface": "#2c303a",
+            "tertiary-fixed-dim": "#ffb95f",
+            "on-tertiary-fixed-variant": "#653e00",
+            "error": "#ffb4ab"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "unit-md": "0.75rem",
+            "touch-target-min": "3rem",
+            "unit-xs": "0.25rem",
+            "unit-xl": "2rem",
+            "unit-lg": "1.5rem",
+            "gutter-desktop": "1.5rem",
+            "unit-base": "1rem",
+            "gutter-mobile": "1rem",
+            "unit-sm": "0.5rem",
+            "unit-2xl": "3rem",
+            "unit-2xs": "0.125rem"
+          },
+          "fontFamily": {
+            "display-score-mobile": ["Anybody"],
+            "label-lg": ["Space Grotesk"],
+            "headline-md": ["Anybody"],
+            "headline-sm": ["Anybody"],
+            "display-lg": ["Anybody"],
+            "label-match-clock": ["Space Grotesk"],
+            "label-md": ["Space Grotesk"],
+            "body-md": ["Lexend"],
+            "display-score": ["Anybody"],
+            "body-sm": ["Lexend"],
+            "display-lg-mobile": ["Anybody"],
+            "headline-lg-mobile": ["Anybody"],
+            "label-sm": ["Space Grotesk"],
+            "headline-lg": ["Anybody"],
+            "body-lg": ["Lexend"]
+          },
+          "fontSize": {
+            "display-score-mobile": ["52px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "900" }],
+            "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "display-lg": ["56px", { "lineHeight": "60px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "label-match-clock": ["28px", { "lineHeight": "32px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "display-score": ["72px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "900" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "display-lg-mobile": ["40px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+    }
+    /* Hide scrollbars on sleek tab ribbon */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary selection:text-on-primary antialiased pb-24">
+<!-- Shared Component: TopAppBar -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-gutter-mobile md:px-gutter-desktop h-touch-target-min bg-surface-dim shadow-sm border-b border-outline-variant">
+<div class="flex items-center space-x-unit-sm">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="sports_soccer">sports_soccer</span>
+<span class="text-headline-sm font-headline-sm tracking-tight text-primary uppercase">FootballHeroes</span>
+</div>
+<!-- Desktop Global Nav Cluster (responsive pivot) -->
+<nav class="hidden md:flex items-center space-x-unit-lg">
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Score</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Live</a>
+<a class="text-label-md font-label-md text-primary border-b-2 border-primary py-unit-xs" href="#">Standings</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Squad</a>
+</nav>
+<!-- Trailing LIVE Action Badge / Trigger -->
+<div class="flex items-center space-x-unit-sm">
+<button class="inline-flex items-center space-x-unit-xs px-unit-sm py-1 bg-error-container/40 border border-error/50 rounded-DEFAULT text-error font-label-sm tracking-wider active:translate-y-px transition-transform duration-75">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="text-label-md font-label-md">LIVE</span>
+</button>
+</div>
+</header>
+<!-- Main Container / Tournament Hub Canvas -->
+<main class="w-full max-w-7xl mx-auto px-gutter-mobile md:px-gutter-desktop pt-unit-base space-y-unit-lg">
+<!-- HERO TOURNAMENT HEADER: BENTO COMPACT ATHLETIC CONSOLE -->
+<section class="bg-surface-container-low border border-outline-variant rounded-xl p-unit-base md:p-unit-lg relative overflow-hidden">
+<!-- Background Graphic Pattern Tone -->
+<div class="absolute -right-12 -top-12 opacity-5 pointer-events-none text-primary">
+<span class="material-symbols-outlined text-[200px]" data-icon="emoji_events">emoji_events</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-unit-base relative z-10">
+<!-- Tournament Identity -->
+<div class="space-y-unit-xs max-w-2xl">
+<div class="flex flex-wrap items-center gap-unit-xs">
+<!-- Status Chip -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-DEFAULT bg-error text-surface-container-lowest font-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-surface-container-lowest animate-ping"></span>
+              LIVE / IN PROGRESS
+            </span>
+<span class="px-2 py-0.5 rounded-DEFAULT bg-surface-variant border border-outline-variant text-on-surface-variant font-label-sm uppercase tracking-wider">
+              Edition 4
+            </span>
+<span class="text-label-sm font-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+              Mumbai, India
+            </span>
+</div>
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface uppercase tracking-tight">
+            Mumbai Premier League 2025
+          </h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-outline" data-icon="verified">verified</span>
+            Organized by <strong class="text-on-surface font-semibold">Mumbai District Football Association</strong>
+</p>
+<!-- Tournament Spec Badges -->
+<div class="grid grid-cols-2 sm:grid-cols-2 md:inline-flex gap-unit-sm pt-unit-xs">
+<div class="bg-surface-dim border border-outline-variant px-unit-sm py-1.5 rounded-DEFAULT flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="account_tree">account_tree</span>
+<span class="text-label-sm font-label-sm text-secondary">Group + Knockout (16 Teams)</span>
+</div>
+<div class="bg-surface-dim border border-outline-variant px-unit-sm py-1.5 rounded-DEFAULT flex items-center space-x-2">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="timer">timer</span>
+<span class="text-label-sm font-label-sm text-secondary">90 Min (45x2)</span>
+</div>
+</div>
+</div>
+<!-- Hero Quick Actions -->
+<div class="flex flex-wrap sm:flex-nowrap items-center gap-unit-xs pt-unit-xs md:pt-0">
+<button class="h-10 px-unit-base bg-primary-container hover:bg-primary active:translate-y-px transition-all rounded-DEFAULT text-on-primary-container font-label-md font-bold uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-lg" data-icon="bookmark_add">bookmark_add</span>
+            Follow Tournament
+          </button>
+<button class="h-10 px-unit-base bg-transparent border border-outline-variant hover:bg-surface-variant active:translate-y-px transition-all rounded-DEFAULT text-on-surface font-label-md font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-lg text-secondary" data-icon="gavel">gavel</span>
+            Rules &amp; Points
+          </button>
+<button aria-label="Share" class="h-10 w-10 bg-transparent border border-outline-variant hover:bg-surface-variant active:translate-y-px transition-all rounded-DEFAULT text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-lg text-secondary" data-icon="share">share</span>
+</button>
+</div>
+</div>
+</section>
+<!-- COMPETITION NAVIGATION TABS -->
+<nav class="border-b border-outline-variant overflow-x-auto no-scrollbar flex space-x-unit-lg text-label-md font-label-md">
+<button class="flex items-center gap-2 pb-unit-sm border-b-2 border-primary text-primary font-bold transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-sm" data-icon="format_list_numbered">format_list_numbered</span>
+        Standings
+      </button>
+<button class="flex items-center gap-2 pb-unit-sm border-b-2 border-transparent text-on-surface-variant hover:text-on-surface transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_month">calendar_month</span>
+        Fixtures &amp; Live
+      </button>
+<button class="flex items-center gap-2 pb-unit-sm border-b-2 border-transparent text-on-surface-variant hover:text-on-surface transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-sm" data-icon="bar_chart">bar_chart</span>
+        Top Stats
+      </button>
+<button class="flex items-center gap-2 pb-unit-sm border-b-2 border-transparent text-on-surface-variant hover:text-on-surface transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-sm" data-icon="shield">shield</span>
+        Teams
+      </button>
+<button class="flex items-center gap-2 pb-unit-sm border-b-2 border-transparent text-on-surface-variant hover:text-on-surface transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-sm" data-icon="schema">schema</span>
+        Brackets
+      </button>
+</nav>
+<!-- 12-COLUMN TOURNAMENT MATRIX: STANDINGS & LEADERBOARDS -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-unit-lg items-start">
+<!-- LEFT 8-COLUMNS: STANDINGS TABLE -->
+<section class="lg:col-span-8 space-y-unit-md">
+<!-- Sub-header & Group Selector -->
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-unit-sm">
+<h2 class="text-headline-sm font-headline-sm text-on-surface uppercase">Group A Standings</h2>
+<span class="text-label-sm font-label-sm bg-primary/10 text-primary border border-primary/30 px-2 py-0.5 rounded-DEFAULT">Matchday 3 of 6</span>
+</div>
+<!-- Group switcher chips -->
+<div class="inline-flex rounded-DEFAULT bg-surface-container p-0.5 border border-outline-variant">
+<button class="px-2.5 py-1 text-label-sm font-label-sm font-bold bg-primary text-on-primary rounded-DEFAULT">GRP A</button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface-variant hover:text-on-surface rounded-DEFAULT transition-colors">GRP B</button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface-variant hover:text-on-surface rounded-DEFAULT transition-colors">GRP C</button>
+<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface-variant hover:text-on-surface rounded-DEFAULT transition-colors">GRP D</button>
+</div>
+</div>
+<!-- High-Density Tactical Table Card -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden shadow-2xl">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[620px]">
+<thead>
+<tr class="bg-surface-container border-b border-outline-variant text-label-sm font-label-sm text-secondary uppercase tracking-wider">
+<th class="py-unit-sm px-3 text-center w-12" scope="col">Pos</th>
+<th class="py-unit-sm px-unit-sm" scope="col">Team</th>
+<th class="py-unit-sm px-2 text-center w-10" scope="col">P</th>
+<th class="py-unit-sm px-2 text-center w-10" scope="col">W</th>
+<th class="py-unit-sm px-2 text-center w-10" scope="col">D</th>
+<th class="py-unit-sm px-2 text-center w-10" scope="col">L</th>
+<th class="py-unit-sm px-2 text-center w-11" scope="col">GF</th>
+<th class="py-unit-sm px-2 text-center w-11" scope="col">GA</th>
+<th class="py-unit-sm px-2 text-center w-12" scope="col">GD</th>
+<th class="py-unit-sm px-3 text-center w-14 font-bold text-primary" scope="col">PTS</th>
+<th class="py-unit-sm px-unit-sm text-center w-28" scope="col">Form</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant text-body-sm">
+<!-- ROW 1: Mumbai Strikers (Promotion Spot 1) -->
+<tr class="hover:bg-surface-container/60 transition-colors bg-surface-container-lowest/80 relative">
+<td class="py-3 px-3 text-center font-bold relative">
+<!-- 3px Emerald accent promotion bar -->
+<span class="absolute left-0 top-0 bottom-0 w-[3px] bg-primary"></span>
+<span class="text-primary font-headline-sm">1</span>
+</td>
+<td class="py-3 px-unit-sm">
+<div class="flex items-center space-x-unit-sm">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-variant flex items-center justify-center border border-outline-variant text-primary font-bold">
+                        MS
+                      </div>
+<div>
+<div class="font-label-lg font-bold text-on-surface">Mumbai Strikers</div>
+<span class="text-label-sm text-secondary">Quarter-final Slot</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">3</td>
+<td class="py-3 px-2 text-center font-semibold text-on-surface font-mono">3</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">0</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">0</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">8</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">2</td>
+<td class="py-3 px-2 text-center text-primary font-bold font-mono">+6</td>
+<td class="py-3 px-3 text-center text-headline-sm font-headline-sm text-primary">9</td>
+<td class="py-3 px-unit-sm text-center">
+<div class="flex items-center justify-center space-x-1">
+<span class="w-5 h-5 rounded-DEFAULT bg-primary-container text-on-primary-container font-label-sm flex items-center justify-center font-bold" title="Win">W</span>
+<span class="w-5 h-5 rounded-DEFAULT bg-primary-container text-on-primary-container font-label-sm flex items-center justify-center font-bold" title="Win">W</span>
+<span class="w-5 h-5 rounded-DEFAULT bg-primary-container text-on-primary-container font-label-sm flex items-center justify-center font-bold" title="Win">W</span>
+</div>
+</td>
+</tr>
+<!-- ROW 2: Bandra FC (Promotion Spot 2) -->
+<tr class="hover:bg-surface-container/60 transition-colors bg-surface-dim relative">
+<td class="py-3 px-3 text-center font-bold relative">
+<!-- 3px Emerald accent promotion bar -->
+<span class="absolute left-0 top-0 bottom-0 w-[3px] bg-primary"></span>
+<span class="text-on-surface font-headline-sm">2</span>
+</td>
+<td class="py-3 px-unit-sm">
+<div class="flex items-center space-x-unit-sm">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-variant flex items-center justify-center border border-outline-variant text-tertiary font-bold">
+                        BFC
+                      </div>
+<div>
+<div class="font-label-lg font-bold text-on-surface">Bandra FC</div>
+<span class="text-label-sm text-secondary">Quarter-final Slot</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">3</td>
+<td class="py-3 px-2 text-center font-semibold text-on-surface font-mono">2</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">0</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">1</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">5</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">3</td>
+<td class="py-3 px-2 text-center text-primary font-bold font-mono">+2</td>
+<td class="py-3 px-3 text-center text-headline-sm font-headline-sm text-on-surface">6</td>
+<td class="py-3 px-unit-sm text-center">
+<div class="flex items-center justify-center space-x-1">
+<span class="w-5 h-5 rounded-DEFAULT bg-primary-container text-on-primary-container font-label-sm flex items-center justify-center font-bold" title="Win">W</span>
+<span class="w-5 h-5 rounded-DEFAULT bg-error-container text-on-error-container font-label-sm flex items-center justify-center font-bold" title="Loss">L</span>
+<span class="w-5 h-5 rounded-DEFAULT bg-primary-container text-on-primary-container font-label-sm flex items-center justify-center font-bold" title="Win">W</span>
+</div>
+</td>
+</tr>
+<!-- ROW 3: Delhi United -->
+<tr class="hover:bg-surface-container/60 transition-colors bg-surface-container-lowest/80">
+<td class="py-3 px-3 text-center font-headline-sm text-secondary">3</td>
+<td class="py-3 px-unit-sm">
+<div class="flex items-center space-x-unit-sm">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-variant flex items-center justify-center border border-outline-variant text-secondary font-bold">
+                        DU
+                      </div>
+<div>
+<div class="font-label-lg font-bold text-on-surface">Delhi United</div>
+<span class="text-label-sm text-outline">Group Stage</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">3</td>
+<td class="py-3 px-2 text-center font-semibold text-on-surface font-mono">1</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">0</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">2</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">3</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">5</td>
+<td class="py-3 px-2 text-center text-error font-bold font-mono">-2</td>
+<td class="py-3 px-3 text-center text-headline-sm font-headline-sm text-on-surface">3</td>
+<td class="py-3 px-unit-sm text-center">
+<div class="flex items-center justify-center space-x-1">
+<span class="w-5 h-5 rounded-DEFAULT bg-error-container text-on-error-container font-label-sm flex items-center justify-center font-bold" title="Loss">L</span>
+<span class="w-5 h-5 rounded-DEFAULT bg-primary-container text-on-primary-container font-label-sm flex items-center justify-center font-bold" title="Win">W</span>
+<span class="w-5 h-5 rounded-DEFAULT bg-error-container text-on-error-container font-label-sm flex items-center justify-center font-bold" title="Loss">L</span>
+</div>
+</td>
+</tr>
+<!-- ROW 4: Colaba Warriors -->
+<tr class="hover:bg-surface-container/60 transition-colors bg-surface-dim">
+<td class="py-3 px-3 text-center font-headline-sm text-outline">4</td>
+<td class="py-3 px-unit-sm">
+<div class="flex items-center space-x-unit-sm">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-variant flex items-center justify-center border border-outline-variant text-secondary font-bold">
+                        CW
+                      </div>
+<div>
+<div class="font-label-lg font-bold text-on-surface">Colaba Warriors</div>
+<span class="text-label-sm text-outline">Group Stage</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">3</td>
+<td class="py-3 px-2 text-center font-semibold text-on-surface font-mono">0</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">0</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">3</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">1</td>
+<td class="py-3 px-2 text-center text-on-surface-variant font-mono">7</td>
+<td class="py-3 px-2 text-center text-error font-bold font-mono">-6</td>
+<td class="py-3 px-3 text-center text-headline-sm font-headline-sm text-outline">0</td>
+<td class="py-3 px-unit-sm text-center">
+<div class="flex items-center justify-center space-x-1">
+<span class="w-5 h-5 rounded-DEFAULT bg-error-container text-on-error-container font-label-sm flex items-center justify-center font-bold" title="Loss">L</span>
+<span class="w-5 h-5 rounded-DEFAULT bg-error-container text-on-error-container font-label-sm flex items-center justify-center font-bold" title="Loss">L</span>
+<span class="w-5 h-5 rounded-DEFAULT bg-error-container text-on-error-container font-label-sm flex items-center justify-center font-bold" title="Loss">L</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Legend -->
+<div class="bg-surface-container-high px-unit-base py-unit-xs border-t border-outline-variant flex flex-wrap items-center justify-between text-label-sm font-label-sm text-secondary">
+<div class="flex items-center space-x-unit-md">
+<span class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 bg-primary rounded-DEFAULT"></span>
+                Knockout Qualification (Top 2)
+              </span>
+</div>
+<span class="text-outline">Tiebreakers: PTS &gt; GD &gt; GF &gt; Head-to-Head</span>
+</div>
+</div>
+<!-- RECENT PITCH ACTION RIBBON (TACTICAL ACCORDION) -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-unit-base space-y-unit-sm">
+<div class="flex items-center justify-between">
+<h3 class="text-label-lg font-label-lg uppercase tracking-wider text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" data-icon="flag">flag</span>
+              Matchday 3 Decider Flash
+            </h3>
+<span class="text-label-sm font-label-sm text-secondary">Full Time Results</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-unit-sm">
+<div class="bg-surface-dim border border-outline-variant rounded-DEFAULT p-unit-sm flex items-center justify-between">
+<div class="space-y-1">
+<span class="text-label-sm font-label-sm text-outline">Cooperage Stadium, Pitch 1</span>
+<div class="text-body-sm font-semibold text-on-surface flex items-center space-x-2">
+<span>Mumbai Strikers</span>
+<span class="text-primary font-bold">4 - 1</span>
+<span class="text-secondary">Colaba Warriors</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="bg-surface-dim border border-outline-variant rounded-DEFAULT p-unit-sm flex items-center justify-between">
+<div class="space-y-1">
+<span class="text-label-sm font-label-sm text-outline">Cooperage Stadium, Pitch 2</span>
+<div class="text-body-sm font-semibold text-on-surface flex items-center space-x-2">
+<span>Bandra FC</span>
+<span class="text-primary font-bold">2 - 1</span>
+<span class="text-secondary">Delhi United</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT 4-COLUMNS: TOURNAMENT LEADERBOARD HIGHLIGHTS -->
+<section class="lg:col-span-4 space-y-unit-base">
+<div class="flex items-center justify-between">
+<h2 class="text-headline-sm font-headline-sm text-on-surface uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary" data-icon="military_tech">military_tech</span>
+            Leaders &amp; Honors
+          </h2>
+<a class="text-label-sm font-label-sm text-primary hover:underline uppercase" href="#">View All</a>
+</div>
+<!-- 1. Golden Boot (Top Scorers) Card -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-unit-base relative overflow-hidden shadow-lg">
+<div class="flex items-center justify-between pb-unit-sm border-b border-outline-variant mb-unit-sm">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-tertiary text-xl" data-icon="sports_soccer">sports_soccer</span>
+<h3 class="text-label-lg font-label-lg uppercase tracking-wider text-on-surface">Golden Boot Race</h3>
+</div>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded-DEFAULT bg-tertiary/10 text-tertiary border border-tertiary/20">Goals</span>
+</div>
+<div class="space-y-unit-sm">
+<!-- Leader 1 -->
+<div class="flex items-center justify-between bg-surface-dim p-unit-sm rounded-DEFAULT border border-outline-variant/60">
+<div class="flex items-center space-x-unit-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary text-on-tertiary font-bold text-center flex items-center justify-center font-label-sm">
+                  1
+                </div>
+<div>
+<div class="font-label-lg font-bold text-on-surface">Rahul Sharma</div>
+<div class="text-label-sm text-secondary flex items-center gap-1">
+<span class="text-primary font-bold">#9</span> Mumbai Strikers
+                  </div>
+</div>
+</div>
+<div class="text-right">
+<span class="text-headline-md font-headline-md text-tertiary">5</span>
+<span class="text-label-sm text-outline block">GOALS</span>
+</div>
+</div>
+<!-- Leader 2 -->
+<div class="flex items-center justify-between bg-surface-dim/70 p-unit-sm rounded-DEFAULT border border-outline-variant/40">
+<div class="flex items-center space-x-unit-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-secondary font-bold text-center flex items-center justify-center font-label-sm">
+                  2
+                </div>
+<div>
+<div class="font-label-lg font-bold text-on-surface">Arjun Singh</div>
+<div class="text-label-sm text-secondary flex items-center gap-1">
+<span class="text-primary font-bold">#10</span> Mumbai Strikers
+                  </div>
+</div>
+</div>
+<div class="text-right">
+<span class="text-headline-md font-headline-md text-on-surface">4</span>
+<span class="text-label-sm text-outline block">GOALS</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Top Playmakers (Assists) -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-unit-base relative overflow-hidden shadow-lg">
+<div class="flex items-center justify-between pb-unit-sm border-b border-outline-variant mb-unit-sm">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="assist_walker">assist_walker</span>
+<h3 class="text-label-lg font-label-lg uppercase tracking-wider text-on-surface">Top Playmakers</h3>
+</div>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded-DEFAULT bg-primary/10 text-primary border border-primary/20">Assists</span>
+</div>
+<div class="bg-surface-dim p-unit-sm rounded-DEFAULT border border-outline-variant/60 flex items-center justify-between">
+<div class="flex items-center space-x-unit-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary font-bold text-center flex items-center justify-center font-label-sm">
+                1
+              </div>
+<div>
+<div class="font-label-lg font-bold text-on-surface">Arjun Singh</div>
+<div class="text-label-sm text-secondary flex items-center gap-1">
+<span class="text-primary font-bold">#10</span> Midfielder • Mumbai Strikers
+                </div>
+</div>
+</div>
+<div class="text-right">
+<span class="text-headline-md font-headline-md text-primary">4</span>
+<span class="text-label-sm text-outline block">AST</span>
+</div>
+</div>
+</div>
+<!-- 3. Clean Sheets (Golden Glove) -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-unit-base relative overflow-hidden shadow-lg">
+<div class="flex items-center justify-between pb-unit-sm border-b border-outline-variant mb-unit-sm">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="shield">shield</span>
+<h3 class="text-label-lg font-label-lg uppercase tracking-wider text-on-surface">Clean Sheets</h3>
+</div>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded-DEFAULT bg-secondary/10 text-secondary border border-secondary/20">Shutouts</span>
+</div>
+<div class="bg-surface-dim p-unit-sm rounded-DEFAULT border border-outline-variant/60 flex items-center justify-between">
+<div class="flex items-center space-x-unit-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface font-bold text-center flex items-center justify-center font-label-sm">
+                1
+              </div>
+<div>
+<div class="font-label-lg font-bold text-on-surface">Vikram Roy</div>
+<div class="text-label-sm text-secondary flex items-center gap-1">
+<span class="text-primary font-bold">#1</span> GK • Mumbai Strikers
+                </div>
+</div>
+</div>
+<div class="text-right">
+<span class="text-headline-md font-headline-md text-on-surface">2</span>
+<span class="text-label-sm text-outline block">CS</span>
+</div>
+</div>
+</div>
+<!-- Tournament Operations Pitch-Side Quick Card -->
+<div class="bg-surface-container border border-outline-variant p-unit-base rounded-xl space-y-unit-sm">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-secondary uppercase tracking-wider">Tournament Marshal</span>
+<span class="text-label-sm text-primary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> Pitch Ready
+            </span>
+</div>
+<p class="text-body-sm text-on-surface-variant">
+            Official points verified by MDFA Match Commission. Matchday 4 scheduled for Saturday at 08:30 AM IST.
+          </p>
+<button class="w-full py-2 bg-surface-dim hover:bg-surface-variant border border-outline-variant text-on-surface font-label-sm uppercase tracking-wider rounded-DEFAULT transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-base" data-icon="download">download</span>
+            Download Official Standings PDF
+          </button>
+</div>
+</section>
+</div>
+</main>
+<!-- Shared Component: BottomNavBar (Fixed Mobile Docked Full-Width) -->
+<!-- Destination Rule Check: Standings is active match, 4-destinations -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter-mobile h-touch-target-min bg-surface-container-lowest shadow-lg">
+<!-- Score (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant py-unit-xs hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-75" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="scoreboard">scoreboard</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider mt-0.5">Score</span>
+</a>
+<!-- Live (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant py-unit-xs hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-75" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="sensors">sensors</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider mt-0.5">Live</span>
+</a>
+<!-- Standings (ACTIVE) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary font-bold py-unit-xs active:scale-95 transition-transform duration-75" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="leaderboard" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider mt-0.5">Standings</span>
+</a>
+<!-- Squad (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant py-unit-xs hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-75" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="groups">groups</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider mt-0.5">Squad</span>
+</a>
+</nav>
+</body></html>

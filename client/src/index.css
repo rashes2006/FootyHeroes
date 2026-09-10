@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* ============================================================
+   FootyHeroes Design System — Dark Athletic Theme
+   Inspired by Google Stitch design tokens
+   ============================================================ */
+
+@theme {
+  --color-pitch-950: #050811;
+  --color-pitch-900: #090D16;
+  --color-pitch-800: #0F172A;
+  --color-pitch-700: #1E293B;
+  --color-pitch-600: #334155;
+  --color-pitch-500: #475569;
+  --color-pitch-400: #64748B;
+  --color-pitch-300: #94A3B8;
+  --color-pitch-200: #CBD5E1;
+  --color-pitch-100: #E2E8F0;
+  --color-pitch-50: #F8FAFC;
+
+  --color-emerald-500: #10B981;
+  --color-emerald-400: #34D399;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+
+  --color-amber-500: #F59E0B;
+  --color-amber-400: #FBBF24;
+
+  --color-crimson-500: #EF4444;
+  --color-crimson-400: #F87171;
+  --color-crimson-600: #DC2626;
+
+  --color-blue-500: #3B82F6;
+  --color-blue-400: #60A5FA;
+
+  --font-display: 'Anybody', 'Impact', sans-serif;
+  --font-mono: 'Space Grotesk', 'SF Mono', monospace;
+  --font-sans: 'Lexend', 'Inter', sans-serif;
+}
+
+/* Global styles */
+html {
+  background-color: var(--color-pitch-950);
+  color: var(--color-pitch-50);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-pitch-600); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-pitch-500); }
+
+/* Selection */
+::selection {
+  background: var(--color-emerald-500);
+  color: var(--color-pitch-900);
+}
+
+/* Live pulse animation */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-live-pulse {
+  animation: live-pulse 1.5s ease-in-out infinite;
+}
+
+/* Card hover glow */
+.card-glow:hover {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+}
+
+/* Match event entry animation */
+@keyframes slide-in {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FootballHeroes - Team & Player Profile Hub</title>
+<!-- Google Fonts: Anybody (Headlines/Display), Space Grotesk (Labels), Lexend (Body) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@600;700;800;900&family=Lexend:wght@300;400;500;600&family=Space+Grotesk:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@100..900&family=Lexend:wght@100..900&family=Space+Grotesk:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary": "#472a00",
+            "tertiary-fixed": "#ffddb8",
+            "secondary-fixed": "#dae2fd",
+            "on-background": "#dfe2ef",
+            "secondary-container": "#3f465c",
+            "surface-dim": "#0f131c",
+            "on-tertiary-container": "#523200",
+            "on-secondary-fixed": "#131b2e",
+            "on-surface": "#dfe2ef",
+            "secondary-fixed-dim": "#bec6e0",
+            "primary-fixed": "#6ffbbe",
+            "surface-container-lowest": "#0a0e17",
+            "error-container": "#93000a",
+            "tertiary": "#ffb95f",
+            "surface-container": "#1c1f29",
+            "primary-container": "#10b981",
+            "surface-variant": "#31353f",
+            "on-primary": "#003824",
+            "surface-container-highest": "#31353f",
+            "on-primary-fixed": "#002113",
+            "secondary": "#bec6e0",
+            "surface-container-low": "#181b25",
+            "inverse-surface": "#dfe2ef",
+            "surface-bright": "#353943",
+            "background": "#0f131c",
+            "on-surface-variant": "#bbcabf",
+            "on-primary-container": "#00422b",
+            "on-tertiary-fixed": "#2a1700",
+            "on-secondary": "#283044",
+            "primary": "#4edea3",
+            "on-primary-fixed-variant": "#005236",
+            "surface-tint": "#4edea3",
+            "on-secondary-container": "#adb4ce",
+            "on-secondary-fixed-variant": "#3f465c",
+            "primary-fixed-dim": "#4edea3",
+            "surface": "#0f131c",
+            "surface-container-high": "#262a34",
+            "outline-variant": "#3c4a42",
+            "inverse-primary": "#006c49",
+            "outline": "#86948a",
+            "tertiary-container": "#e29100",
+            "on-error": "#690005",
+            "on-error-container": "#ffdad6",
+            "inverse-on-surface": "#2c303a",
+            "tertiary-fixed-dim": "#ffb95f",
+            "on-tertiary-fixed-variant": "#653e00",
+            "error": "#ffb4ab"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "unit-md": "0.75rem",
+            "touch-target-min": "3rem",
+            "unit-xs": "0.25rem",
+            "unit-xl": "2rem",
+            "unit-lg": "1.5rem",
+            "gutter-desktop": "1.5rem",
+            "unit-base": "1rem",
+            "gutter-mobile": "1rem",
+            "unit-sm": "0.5rem",
+            "unit-2xl": "3rem",
+            "unit-2xs": "0.125rem"
+          },
+          "fontFamily": {
+            "display-score-mobile": ["Anybody"],
+            "label-lg": ["Space Grotesk"],
+            "headline-md": ["Anybody"],
+            "headline-sm": ["Anybody"],
+            "display-lg": ["Anybody"],
+            "label-match-clock": ["Space Grotesk"],
+            "label-md": ["Space Grotesk"],
+            "body-md": ["Lexend"],
+            "display-score": ["Anybody"],
+            "body-sm": ["Lexend"],
+            "display-lg-mobile": ["Anybody"],
+            "headline-lg-mobile": ["Anybody"],
+            "label-sm": ["Space Grotesk"],
+            "headline-lg": ["Anybody"],
+            "body-lg": ["Lexend"]
+          },
+          "fontSize": {
+            "display-score-mobile": ["52px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "900" }],
+            "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "display-lg": ["56px", { "lineHeight": "60px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "label-match-clock": ["28px", { "lineHeight": "32px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "display-score": ["72px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "900" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "display-lg-mobile": ["40px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased pb-28 selection:bg-primary selection:text-on-primary min-h-screen">
+<!-- TopAppBar Anchor from Shared Components JSON -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-gutter-mobile md:px-gutter-desktop h-touch-target-min border-b border-outline-variant bg-surface-dim">
+<div class="flex items-center gap-unit-sm">
+<span class="material-symbols-outlined text-primary text-[24px]" data-icon="sports_soccer">sports_soccer</span>
+<span class="text-headline-sm font-headline-sm tracking-tight text-primary uppercase font-bold">FootballHeroes</span>
+</div>
+<!-- Desktop Global Nav Cluster (Desktop only) -->
+<nav class="hidden md:flex items-center gap-unit-lg">
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Score</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Live</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Standings</a>
+<a class="text-label-md font-label-md text-primary font-bold transition-colors" href="#">Squad</a>
+</nav>
+<!-- Trailing Action -->
+<div class="flex items-center gap-unit-sm">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-error-container text-on-error-container text-label-sm font-label-sm font-bold tracking-wider">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span>LIVE</span>
+</div>
+<button class="p-unit-xs rounded text-on-surface-variant hover:bg-surface-variant hover:text-primary active:translate-y-px transition-transform duration-75">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Container -->
+<main class="max-w-[1440px] mx-auto px-gutter-mobile md:px-gutter-desktop pt-unit-base space-y-unit-base">
+<!-- Team Switcher / Tactical Context Banner -->
+<section class="bg-surface-container-low border border-outline-variant rounded-xl p-unit-base md:p-unit-lg flex flex-col md:flex-row md:items-center justify-between gap-unit-base shadow-sm">
+<div class="flex items-center gap-unit-base">
+<!-- Team Crest Avatar / Badge -->
+<div class="w-14 h-14 md:w-16 md:h-16 rounded-lg bg-surface-container-highest border-2 border-primary flex items-center justify-center relative overflow-hidden shrink-0">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="shield">shield</span>
+<span class="absolute bottom-0 text-[9px] font-label-sm uppercase font-bold bg-primary text-on-primary w-full text-center py-0.5">MSFC</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h1 class="text-headline-sm md:text-headline-md font-headline-md text-on-surface tracking-tight">Mumbai Strikers</h1>
+<button class="p-1 text-on-surface-variant hover:text-primary transition-colors" title="Switch Club">
+<span class="material-symbols-outlined text-[18px]" data-icon="swap_vert">swap_vert</span>
+</button>
+</div>
+<div class="flex flex-wrap items-center gap-x-unit-md gap-y-1 mt-1 text-body-sm font-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary" data-icon="stars">stars</span>
+              Captain: <strong class="text-on-surface font-medium">Rahul Sharma</strong>
+</span>
+<span class="hidden md:inline text-outline">•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="sports">sports</span>
+              Manager: <strong class="text-on-surface font-medium">S. Nair</strong>
+</span>
+<span class="hidden md:inline text-outline">•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="location_on">location_on</span>
+              City: <strong class="text-on-surface font-medium">Mumbai</strong>
+</span>
+</div>
+</div>
+</div>
+<!-- Quick Team Metadata Pills -->
+<div class="flex items-center gap-unit-sm self-start md:self-auto">
+<div class="px-3 py-1.5 rounded bg-surface-container-high border border-outline-variant flex items-center gap-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase">Rank</span>
+<span class="text-label-md font-label-md text-primary font-bold">#2 in League</span>
+</div>
+<div class="px-3 py-1.5 rounded bg-surface-container-high border border-outline-variant flex items-center gap-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase">Form</span>
+<div class="flex items-center gap-1 font-label-sm font-bold">
+<span class="w-4 h-4 rounded-xs bg-primary text-on-primary flex items-center justify-center text-[10px]">W</span>
+<span class="w-4 h-4 rounded-xs bg-primary text-on-primary flex items-center justify-center text-[10px]">W</span>
+<span class="w-4 h-4 rounded-xs bg-tertiary text-on-tertiary flex items-center justify-center text-[10px]">D</span>
+<span class="w-4 h-4 rounded-xs bg-primary text-on-primary flex items-center justify-center text-[10px]">W</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Main 12-Column Responsive Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-unit-base md:gap-gutter-desktop">
+<!-- LEFT COLUMN: Player Hero Card & Season Statistics (7 Cols on desktop) -->
+<div class="lg:col-span-7 space-y-unit-base">
+<!-- Player Profile Card (Bento Masterpiece) -->
+<article class="bg-surface-container border border-outline-variant rounded-xl p-unit-base md:p-unit-lg relative overflow-hidden">
+<!-- Background High-Contrast Pitch Lines -->
+<div class="absolute -right-12 -top-12 w-64 h-64 border border-outline-variant/30 rounded-full pointer-events-none"></div>
+<div class="flex flex-col sm:flex-row gap-unit-lg items-start sm:items-center relative z-10">
+<!-- Player Avatar Image with Jersey Badge -->
+<div class="relative shrink-0 mx-auto sm:mx-0">
+<div class="w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden border-2 border-primary bg-surface-container-high shadow-lg">
+<img class="w-full h-full object-cover object-top" data-alt="Intense close-up athletic portrait of an Indian male football striker Rahul Sharma wearing a dark navy Mumbai Strikers jersey under dramatic stadium floodlights. High-contrast athletic sports photography with vivid neon emerald rim lighting, beads of sweat on his forehead, focused competitive expression, sharp facial details, dark moody pitch background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABhSISTrKrpP_rKGc1d56EcwnTWiN5evHReCBf29habdPoDvp_3f9kfUp7_NueDKEuje3veJa_QezujyP4ru5KVW7ykpLMoc3T_nyquzrQyMsQOufudRBa16UUKcEyk8kcTijxY7RdR7T6H9sGc3WO156-pvmMLmu5N1vyEXJNF25M6a8S70SsMKj5jxDwI0QsGkJuHWH9XU9OBSqE_GC9dBa9mk6MHlC8pTm2F8d0NKmqZxL6Ooe1"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-on-primary font-display-score-mobile text-[16px] px-2 py-0.5 rounded shadow border border-on-primary font-black">
+                #10
+              </div>
+<div class="absolute -top-1.5 -left-1.5 bg-surface-container-lowest text-primary rounded-full p-0.5 border border-outline-variant" title="Verified Pro Player">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<!-- Identity and Attributes -->
+<div class="flex-1 text-center sm:text-left space-y-2 w-full">
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+<div>
+<div class="flex items-center justify-center sm:justify-start gap-2">
+<h2 class="text-headline-md sm:text-headline-lg font-headline-lg text-on-surface tracking-tight">Rahul Sharma</h2>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-label-sm uppercase bg-primary/10 text-primary border border-primary/30">Active</span>
+</div>
+<p class="text-label-md font-label-md text-primary font-semibold tracking-wide uppercase mt-0.5">Striker / Center Forward</p>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-mono uppercase bg-surface-container-highest px-2 py-1 rounded">ID: MS-1094</span>
+</div>
+<!-- Key Bio Attributes Pills -->
+<div class="grid grid-cols-3 gap-2 pt-1 border-t border-outline-variant/60">
+<div class="bg-surface-container-low px-2.5 py-1.5 rounded border border-outline-variant">
+<span class="block text-label-sm font-label-sm text-on-surface-variant uppercase">Foot</span>
+<span class="text-label-md font-label-md text-on-surface font-bold">Right (Strong)</span>
+</div>
+<div class="bg-surface-container-low px-2.5 py-1.5 rounded border border-outline-variant">
+<span class="block text-label-sm font-label-sm text-on-surface-variant uppercase">Age</span>
+<span class="text-label-md font-label-md text-on-surface font-bold">23 yrs</span>
+</div>
+<div class="bg-surface-container-low px-2.5 py-1.5 rounded border border-outline-variant">
+<span class="block text-label-sm font-label-sm text-on-surface-variant uppercase">Height</span>
+<span class="text-label-md font-label-md text-on-surface font-bold">184 cm</span>
+</div>
+</div>
+<!-- Accolade Badges Strip -->
+<div class="flex flex-wrap gap-2 pt-1 justify-center sm:justify-start">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary/10 border border-tertiary/40 text-tertiary text-label-sm font-label-sm font-bold">
+<span>🏆</span>
+<span>3x Man of the Match</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/40 text-primary text-label-sm font-label-sm font-bold">
+<span>⚡</span>
+<span>Golden Boot Contender</span>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Key Season Stats Grid -->
+<section class="bg-surface-container-low border border-outline-variant rounded-xl p-unit-base md:p-unit-lg">
+<div class="flex items-center justify-between pb-unit-sm border-b border-outline-variant mb-unit-base">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="analytics">analytics</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface uppercase tracking-wider">2024 Season Stats</h3>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase font-mono">League Division 1</span>
+</div>
+<!-- High-Contrast Metric Bento Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-unit-sm">
+<!-- Matches -->
+<div class="bg-surface-container p-unit-base rounded border border-outline-variant flex flex-col justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase font-bold">Matches</span>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-display-score-mobile text-headline-lg font-bold text-on-surface">12</span>
+<span class="text-label-sm font-label-sm text-secondary font-mono">100% Start</span>
+</div>
+</div>
+<!-- Goals (Primary Highlight) -->
+<div class="bg-surface-container p-unit-base rounded border-2 border-primary flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-primary uppercase font-bold">Goals</span>
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="sports_soccer">sports_soccer</span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-display-score-mobile text-display-score-mobile font-black text-primary leading-none">11</span>
+<span class="text-label-sm font-label-sm text-primary font-bold">0.92 / gm</span>
+</div>
+</div>
+<!-- Assists -->
+<div class="bg-surface-container p-unit-base rounded border border-outline-variant flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase font-bold">Assists</span>
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="handshake">handshake</span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-display-score-mobile text-headline-lg font-bold text-on-surface">6</span>
+<span class="text-label-sm font-label-sm text-secondary font-mono">0.50 / gm</span>
+</div>
+</div>
+<!-- Mins Played -->
+<div class="bg-surface-container p-unit-base rounded border border-outline-variant flex flex-col justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase font-bold">Mins Played</span>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-display-score-mobile text-headline-lg font-bold text-on-surface">980'</span>
+<span class="text-label-sm font-label-sm text-secondary font-mono">81.6' avg</span>
+</div>
+</div>
+<!-- Shots on Target -->
+<div class="bg-surface-container p-unit-base rounded border border-outline-variant flex flex-col justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase font-bold">Shots on Target</span>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-display-score-mobile text-headline-lg font-bold text-on-surface">28</span>
+<span class="text-label-sm font-label-sm text-primary font-mono">68% Acc</span>
+</div>
+</div>
+<!-- Goal Conversion -->
+<div class="bg-surface-container p-unit-base rounded border border-outline-variant flex flex-col justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase font-bold">Conversion</span>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-display-score-mobile text-headline-lg font-bold text-tertiary">39.2%</span>
+<span class="text-label-sm font-label-sm text-tertiary font-mono">Elite</span>
+</div>
+</div>
+<!-- Yellow Cards -->
+<div class="bg-surface-container p-unit-base rounded border border-outline-variant flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase font-bold">Yellow Card</span>
+<span class="w-3 h-4 bg-tertiary-container rounded-xs inline-block"></span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-display-score-mobile text-headline-lg font-bold text-on-surface">1</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-mono">Clean</span>
+</div>
+</div>
+<!-- Red Cards -->
+<div class="bg-surface-container p-unit-base rounded border border-outline-variant flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase font-bold">Red Card</span>
+<span class="w-3 h-4 bg-error rounded-xs inline-block"></span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<span class="font-display-score-mobile text-headline-lg font-bold text-on-surface">0</span>
+<span class="text-label-sm font-label-sm text-primary font-mono">Perfect</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Match-by-Match Performance Log -->
+<section class="bg-surface-container-low border border-outline-variant rounded-xl p-unit-base md:p-unit-lg">
+<div class="flex items-center justify-between pb-unit-sm border-b border-outline-variant mb-unit-base">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="history">history</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface uppercase tracking-wider">Recent Match Performance</h3>
+</div>
+<span class="text-label-sm font-label-sm text-primary font-bold">Last 3 Fixtures</span>
+</div>
+<div class="space-y-unit-sm">
+<!-- Fixture 1: Delhi United -->
+<div class="bg-surface-container border border-outline-variant hover:border-primary transition-colors p-unit-base rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-unit-base">
+<div class="flex items-center gap-unit-base">
+<div class="w-10 h-10 rounded bg-surface-container-highest border border-outline-variant flex items-center justify-center font-display-score-mobile text-on-surface text-label-lg shrink-0">
+                  DU
+                </div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="text-headline-sm font-headline-sm text-on-surface">vs Delhi United</h4>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm uppercase bg-tertiary text-on-tertiary font-bold">MOTM</span>
+</div>
+<div class="flex items-center gap-unit-sm text-body-sm text-on-surface-variant mt-0.5">
+<span class="font-mono text-primary font-bold">72 Mins</span>
+<span>•</span>
+<span>W 3 - 1 (Home)</span>
+</div>
+</div>
+</div>
+<!-- Detailed Stats Row -->
+<div class="flex items-center justify-between md:justify-end gap-unit-lg pt-2 md:pt-0 border-t md:border-t-0 border-outline-variant">
+<div class="flex items-center gap-unit-base">
+<div class="text-center">
+<span class="block text-label-sm font-label-sm text-on-surface-variant uppercase">Goals</span>
+<span class="text-label-lg font-label-lg text-primary font-bold">1</span>
+</div>
+<div class="text-center">
+<span class="block text-label-sm font-label-sm text-on-surface-variant uppercase">Assists</span>
+<span class="text-label-lg font-label-lg text-secondary font-bold">1</span>
+</div>
+</div>
+<div class="bg-surface-container-highest px-3 py-1.5 rounded border border-outline-variant text-right">
+<span class="block text-[10px] font-label-sm uppercase text-on-surface-variant">Rating</span>
+<span class="font-display-score-mobile text-headline-sm font-bold text-primary">8.9</span>
+</div>
+</div>
+</div>
+<!-- Fixture 2: Bandra FC -->
+<div class="bg-surface-container border border-outline-variant hover:border-primary transition-colors p-unit-base rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-unit-base">
+<div class="flex items-center gap-unit-base">
+<div class="w-10 h-10 rounded bg-surface-container-highest border border-outline-variant flex items-center justify-center font-display-score-mobile text-on-surface text-label-lg shrink-0">
+                  BFC
+                </div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="text-headline-sm font-headline-sm text-on-surface">vs Bandra FC</h4>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm uppercase bg-tertiary text-on-tertiary font-bold">MOTM</span>
+</div>
+<div class="flex items-center gap-unit-sm text-body-sm text-on-surface-variant mt-0.5">
+<span class="font-mono text-primary font-bold">90 Mins</span>
+<span>•</span>
+<span>W 2 - 0 (Away)</span>
+</div>
+</div>
+</div>
+<!-- Detailed Stats Row -->
+<div class="flex items-center justify-between md:justify-end gap-unit-lg pt-2 md:pt-0 border-t md:border-t-0 border-outline-variant">
+<div class="flex items-center gap-unit-base">
+<div class="text-center">
+<span class="block text-label-sm font-label-sm text-on-surface-variant uppercase">Goals</span>
+<span class="text-label-lg font-label-lg text-primary font-bold">2</span>
+</div>
+<div class="text-center">
+<span class="block text-label-sm font-label-sm text-on-surface-variant uppercase">Assists</span>
+<span class="text-label-lg font-label-lg text-secondary font-bold">0</span>
+</div>
+</div>
+<div class="bg-surface-container-highest px-3 py-1.5 rounded border border-outline-variant text-right">
+<span class="block text-[10px] font-label-sm uppercase text-on-surface-variant">Rating</span>
+<span class="font-display-score-mobile text-headline-sm font-bold text-primary">9.2</span>
+</div>
+</div>
+</div>
+<!-- Fixture 3: Colaba Warriors -->
+<div class="bg-surface-container border border-outline-variant hover:border-primary transition-colors p-unit-base rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-unit-base">
+<div class="flex items-center gap-unit-base">
+<div class="w-10 h-10 rounded bg-surface-container-highest border border-outline-variant flex items-center justify-center font-display-score-mobile text-on-surface text-label-lg shrink-0">
+                  CW
+                </div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="text-headline-sm font-headline-sm text-on-surface">vs Colaba Warriors</h4>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-sm uppercase bg-tertiary text-on-tertiary font-bold">MOTM</span>
+</div>
+<div class="flex items-center gap-unit-sm text-body-sm text-on-surface-variant mt-0.5">
+<span class="font-mono text-primary font-bold">85 Mins</span>
+<span>•</span>
+<span>W 4 - 2 (Home)</span>
+</div>
+</div>
+</div>
+<!-- Detailed Stats Row -->
+<div class="flex items-center justify-between md:justify-end gap-unit-lg pt-2 md:pt-0 border-t md:border-t-0 border-outline-variant">
+<div class="flex items-center gap-unit-base">
+<div class="text-center">
+<span class="block text-label-sm font-label-sm text-on-surface-variant uppercase">Goals</span>
+<span class="text-label-lg font-label-lg text-primary font-bold">2</span>
+</div>
+<div class="text-center">
+<span class="block text-label-sm font-label-sm text-on-surface-variant uppercase">Assists</span>
+<span class="text-label-lg font-label-lg text-secondary font-bold">1</span>
+</div>
+</div>
+<div class="bg-surface-container-highest px-3 py-1.5 rounded border border-outline-variant text-right">
+<span class="block text-[10px] font-label-sm uppercase text-on-surface-variant">Rating</span>
+<span class="font-display-score-mobile text-headline-sm font-bold text-primary">9.0</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN: Pitch Tactical Formation & Squad Quick View (5 Cols on desktop) -->
+<div class="lg:col-span-5 space-y-unit-base">
+<!-- Tactical Pitch Formation Diagram -->
+<section class="bg-surface-container-low border border-outline-variant rounded-xl p-unit-base md:p-unit-lg flex flex-col">
+<div class="flex items-center justify-between pb-unit-sm border-b border-outline-variant mb-unit-base">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="stadium">stadium</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface uppercase tracking-wider">Formation 4-3-3</h3>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">Mumbai Strikers Starting XI</p>
+</div>
+<span class="px-2.5 py-1 rounded bg-surface-container-highest text-primary text-label-sm font-label-sm font-bold border border-primary/20">ATTACK FOCUS</span>
+</div>
+<!-- The Football Pitch Graphic Visualizer -->
+<div class="relative w-full aspect-[4/5] bg-surface-dim rounded-lg border-2 border-outline-variant overflow-hidden p-3 flex flex-col justify-between select-none shadow-inner">
+<!-- Pitch Markings SVG overlay -->
+<div class="absolute inset-0 pointer-events-none opacity-20 flex flex-col justify-between p-3">
+<!-- Penalty Area Top -->
+<div class="border-b border-x border-primary h-20 w-36 mx-auto"></div>
+<!-- Halfway Line & Center Circle -->
+<div class="w-full border-b border-primary relative flex items-center justify-center">
+<div class="w-24 h-24 border border-primary rounded-full absolute -top-12"></div>
+<div class="w-2 h-2 bg-primary rounded-full absolute -top-1"></div>
+</div>
+<!-- Penalty Area Bottom -->
+<div class="border-t border-x border-primary h-20 w-36 mx-auto"></div>
+</div>
+<!-- FORWARDS (LW, ST - Rahul Sharma Highlighted, RW) -->
+<div class="relative z-10 grid grid-cols-3 gap-2 pt-2 text-center">
+<!-- LW -->
+<div class="flex flex-col items-center">
+<div class="w-9 h-9 rounded-full bg-surface-container-high border border-outline flex items-center justify-center text-label-sm font-bold text-on-surface shadow">
+                  #11
+                </div>
+<span class="text-[10px] font-label-sm text-on-surface-variant mt-1 font-semibold">Amit (LW)</span>
+</div>
+<!-- ST (Rahul Sharma - Active Striker Glow Highlight) -->
+<div class="flex flex-col items-center scale-110 -translate-y-1">
+<div class="relative">
+<div class="w-11 h-11 rounded-full bg-primary text-on-primary border-2 border-on-primary font-black flex items-center justify-center text-label-lg shadow-lg shadow-primary/30 ring-2 ring-primary">
+                    #10
+                  </div>
+<span class="absolute -top-2 -right-2 bg-tertiary text-on-tertiary text-[9px] font-black px-1 rounded">ST</span>
+</div>
+<span class="text-label-sm font-label-sm text-primary font-bold mt-1 bg-surface-container-lowest/80 px-2 py-0.5 rounded border border-primary/40">R. Sharma</span>
+</div>
+<!-- RW -->
+<div class="flex flex-col items-center">
+<div class="w-9 h-9 rounded-full bg-surface-container-high border border-outline flex items-center justify-center text-label-sm font-bold text-on-surface shadow">
+                  #7
+                </div>
+<span class="text-[10px] font-label-sm text-on-surface-variant mt-1 font-semibold">Dev (RW)</span>
+</div>
+</div>
+<!-- MIDFIELDERS (LCM, CAM, RCM) -->
+<div class="relative z-10 grid grid-cols-3 gap-2 text-center py-2">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline flex items-center justify-center text-label-sm font-bold text-on-surface">
+                  #8
+                </div>
+<span class="text-[10px] font-label-sm text-on-surface-variant mt-0.5">LCM</span>
+</div>
+<div class="flex flex-col items-center -translate-y-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline flex items-center justify-center text-label-sm font-bold text-on-surface">
+                  #6
+                </div>
+<span class="text-[10px] font-label-sm text-on-surface-variant mt-0.5">CAM</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline flex items-center justify-center text-label-sm font-bold text-on-surface">
+                  #14
+                </div>
+<span class="text-[10px] font-label-sm text-on-surface-variant mt-0.5">RCM</span>
+</div>
+</div>
+<!-- DEFENDERS (LB, LCB, RCB, RB) -->
+<div class="relative z-10 grid grid-cols-4 gap-1 text-center">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline flex items-center justify-center text-label-sm font-bold text-on-surface">
+                  #3
+                </div>
+<span class="text-[9px] font-label-sm text-on-surface-variant mt-0.5">LB</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline flex items-center justify-center text-label-sm font-bold text-on-surface">
+                  #4
+                </div>
+<span class="text-[9px] font-label-sm text-on-surface-variant mt-0.5">CB</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline flex items-center justify-center text-label-sm font-bold text-on-surface">
+                  #5
+                </div>
+<span class="text-[9px] font-label-sm text-on-surface-variant mt-0.5">CB</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline flex items-center justify-center text-label-sm font-bold text-on-surface">
+                  #2
+                </div>
+<span class="text-[9px] font-label-sm text-on-surface-variant mt-0.5">RB</span>
+</div>
+</div>
+<!-- GOALKEEPER (GK) -->
+<div class="relative z-10 flex flex-col items-center justify-center pb-2">
+<div class="w-9 h-9 rounded-full bg-tertiary text-on-tertiary font-bold flex items-center justify-center text-label-sm border-2 border-on-surface">
+                #1
+              </div>
+<span class="text-[10px] font-label-sm text-tertiary font-bold mt-0.5">Vikram Roy (GK)</span>
+</div>
+</div>
+<!-- Tactician Quick Insight Note -->
+<div class="mt-3 p-2.5 rounded bg-surface-container-highest/60 border border-outline-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="lightbulb">lightbulb</span>
+<p class="text-body-sm text-on-surface-variant leading-snug">
+              Sharma operates as a high pressing target-man, receiving 42% of forward passes through the central channel.
+            </p>
+</div>
+</section>
+<!-- Squad Quick View Section -->
+<section class="bg-surface-container-low border border-outline-variant rounded-xl p-unit-base md:p-unit-lg">
+<div class="flex items-center justify-between pb-unit-sm border-b border-outline-variant mb-unit-base">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="groups">groups</span>
+<h3 class="text-headline-sm font-headline-sm text-on-surface uppercase tracking-wider">Squad Quick View</h3>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase font-mono">18 Active</span>
+</div>
+<!-- Featured Squad Members List -->
+<div class="space-y-2">
+<!-- Player 1: Arjun Singh -->
+<div class="bg-surface-container hover:bg-surface-container-high border border-outline-variant rounded p-2.5 flex items-center justify-between transition-colors">
+<div class="flex items-center gap-unit-sm">
+<div class="w-8 h-8 rounded bg-surface-container-highest text-primary font-bold text-label-md flex items-center justify-center border border-outline-variant">
+                  #9
+                </div>
+<div>
+<h5 class="text-label-md font-label-md text-on-surface font-bold">Arjun Singh</h5>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase">Striker / Sub</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-label-sm text-primary font-bold">3 Goals</span>
+<span class="block text-[10px] text-on-surface-variant font-mono">4 Apps</span>
+</div>
+</div>
+<!-- Player 2: Amit Kumar -->
+<div class="bg-surface-container hover:bg-surface-container-high border border-outline-variant rounded p-2.5 flex items-center justify-between transition-colors">
+<div class="flex items-center gap-unit-sm">
+<div class="w-8 h-8 rounded bg-surface-container-highest text-primary font-bold text-label-md flex items-center justify-center border border-outline-variant">
+                  #11
+                </div>
+<div>
+<h5 class="text-label-md font-label-md text-on-surface font-bold">Amit Kumar</h5>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase">Left Wing (LW)</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-label-sm text-primary font-bold">5 Assists</span>
+<span class="block text-[10px] text-on-surface-variant font-mono">11 Apps</span>
+</div>
+</div>
+<!-- Player 3: Vikram Roy -->
+<div class="bg-surface-container hover:bg-surface-container-high border border-outline-variant rounded p-2.5 flex items-center justify-between transition-colors">
+<div class="flex items-center gap-unit-sm">
+<div class="w-8 h-8 rounded bg-tertiary/20 text-tertiary font-bold text-label-md flex items-center justify-center border border-tertiary/40">
+                  #1
+                </div>
+<div>
+<h5 class="text-label-md font-label-md text-on-surface font-bold">Vikram Roy</h5>
+<span class="text-label-sm font-label-sm text-tertiary uppercase">Goalkeeper (GK)</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-label-sm text-primary font-bold">6 Clean Sheets</span>
+<span class="block text-[10px] text-on-surface-variant font-mono">12 Apps</span>
+</div>
+</div>
+</div>
+<!-- Full Team Roster Button Trigger (Primary Scorer Action Token) -->
+<button class="w-full mt-unit-base h-touch-target-min bg-primary-container hover:bg-[#059669] text-on-primary-container font-label-lg uppercase tracking-wider rounded font-bold flex items-center justify-center gap-2 active:translate-y-px transition-all duration-75 shadow">
+<span class="material-symbols-outlined text-[20px]" data-icon="format_list_bulleted">format_list_bulleted</span>
+<span>View Full Team Roster (24)</span>
+</button>
+</section>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Anchor from Shared Components JSON -->
+<!-- Strict Hierarchy: 'Squad' tab is ACTIVE based on Page Intent (Team & Player Profile Hub) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter-mobile h-touch-target-min border-t border-outline-variant bg-surface-container-lowest md:hidden">
+<!-- Item 1: Score (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant py-unit-xs hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="scoreboard">scoreboard</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Score</span>
+</a>
+<!-- Item 2: Live (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant py-unit-xs hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="sensors">sensors</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Live</span>
+</a>
+<!-- Item 3: Standings (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant py-unit-xs hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="leaderboard">leaderboard</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Standings</span>
+</a>
+<!-- Item 4: Squad (ACTIVE STATE - Team & Player Hub context match) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary font-bold py-unit-xs active:scale-95 transition-transform duration-75" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="groups" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider font-bold">Squad</span>
+</a>
+</nav>
+</body></html>

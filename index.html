@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FootyHeroes Hub - Stitch Design Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800;900&family=Lexend:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            pitch: {
+              900: '#090D16',
+              800: '#0F172A',
+              700: '#1E293B',
+              600: '#334155'
+            },
+            accent: {
+              emerald: '#10B981',
+              amber: '#F59E0B',
+              crimson: '#EF4444'
+            }
+          },
+          fontFamily: {
+            display: ['Anybody', 'sans-serif'],
+            mono: ['Space Grotesk', 'monospace'],
+            sans: ['Lexend', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #090D16;
+      color: #F8FAFC;
+    }
+    .device-shadow {
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 12px #1E293B, 0 0 0 14px #334155;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-accent-emerald selection:text-pitch-900">
+  <!-- Top Navigation Bar -->
+  <header class="bg-pitch-800/90 backdrop-blur border-b border-pitch-700/60 sticky top-0 z-50 px-4 py-3">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-accent-emerald/20 border border-accent-emerald/40 flex items-center justify-center text-accent-emerald">
+          <span class="material-symbols-Outlined text-xl">sports_soccer</span>
+        </div>
+        <div>
+          <h1 class="font-display font-extrabold text-lg tracking-tight text-white flex items-center gap-2">
+            FOOTYHEROES <span class="text-xs px-2 py-0.5 rounded font-mono bg-accent-emerald/20 text-accent-emerald border border-accent-emerald/30">STITCH v1.0</span>
+          </h1>
+          <p class="text-xs text-slate-400 font-sans">Tournament & Live Match Intelligence</p>
+        </div>
+      </div>
+
+      <!-- Screen Selector Tabs -->
+      <nav class="flex items-center gap-1 bg-pitch-900/80 p-1.5 rounded-xl border border-pitch-700/80 text-xs font-mono overflow-x-auto">
+        <button onclick="switchScreen('pitch_side_match_scorer_console', this)" class="screen-tab active px-3 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 bg-accent-emerald text-pitch-900 shadow-sm">
+          <span class="material-symbols-outlined text-sm">edit_note</span>
+          Pitch-Side Scorer
+        </button>
+        <button onclick="switchScreen('spectator_live_match_center', this)" class="screen-tab px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1.5 text-slate-300 hover:text-white hover:bg-pitch-800">
+          <span class="material-symbols-outlined text-sm text-accent-crimson">sensors</span>
+          Live Match Center
+        </button>
+        <button onclick="switchScreen('tournament_hub_standings', this)" class="screen-tab px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1.5 text-slate-300 hover:text-white hover:bg-pitch-800">
+          <span class="material-symbols-outlined text-sm text-accent-amber">trophy</span>
+          Tournament Hub
+        </button>
+        <button onclick="switchScreen('team_player_profile_hub', this)" class="screen-tab px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1.5 text-slate-300 hover:text-white hover:bg-pitch-800">
+          <span class="material-symbols-outlined text-sm text-blue-400">person</span>
+          Squad & Player Hub
+        </button>
+      </nav>
+
+      <!-- View Controls -->
+      <div class="flex items-center gap-2">
+        <button id="viewToggleBtn" onclick="toggleViewportMode()" class="px-3 py-1.5 text-xs font-mono bg-pitch-700/60 hover:bg-pitch-700 text-slate-200 border border-pitch-600/50 rounded-lg flex items-center gap-1.5 transition">
+          <span class="material-symbols-outlined text-sm" id="viewIcon">smartphone</span>
+          <span id="viewText">Mobile View (390px)</span>
+        </button>
+        <a id="openNewTabBtn" href="screens/pitch_side_match_scorer_console.html" target="_blank" class="px-3 py-1.5 text-xs font-mono bg-pitch-700/60 hover:bg-pitch-700 text-slate-200 border border-pitch-600/50 rounded-lg flex items-center gap-1.5 transition">
+          <span class="material-symbols-outlined text-sm">open_in_new</span>
+          Direct URL
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Viewport Area -->
+  <main class="flex-1 flex flex-col items-center justify-start p-4 sm:p-6 overflow-auto">
+    <div id="frameWrapper" class="w-full max-w-[420px] transition-all duration-300 flex flex-col items-center">
+      <!-- Device header details -->
+      <div id="deviceBadge" class="w-full flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2 px-1">
+        <span class="flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-accent-emerald animate-pulse"></span>
+          Viewport: iPhone 14 / 15 Pro (390 × 844)
+        </span>
+        <span id="screenTitleDisplay" class="text-accent-emerald font-semibold">Pitch-Side Console</span>
+      </div>
+
+      <!-- Device Container -->
+      <div id="deviceContainer" class="device-shadow rounded-[36px] overflow-hidden border border-pitch-600/40 bg-pitch-900 w-full h-[844px] relative">
+        <iframe id="screenFrame" src="screens/pitch_side_match_scorer_console.html" class="w-full h-full border-0"></iframe>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let isMobile = true;
+    let currentScreen = 'pitch_side_match_scorer_console';
+
+    const titles = {
+      'pitch_side_match_scorer_console': 'Pitch-Side Scorer Console',
+      'spectator_live_match_center': 'Spectator Live Match Center',
+      'tournament_hub_standings': 'Tournament Hub & Standings',
+      'team_player_profile_hub': 'Squad & Player Profile Hub'
+    };
+
+    function switchScreen(screenName, btn) {
+      currentScreen = screenName;
+      document.querySelectorAll('.screen-tab').forEach(b => {
+        b.classList.remove('bg-accent-emerald', 'text-pitch-900', 'shadow-sm', 'font-bold');
+        b.classList.add('text-slate-300', 'font-medium');
+      });
+      btn.classList.add('bg-accent-emerald', 'text-pitch-900', 'shadow-sm', 'font-bold');
+      btn.classList.remove('text-slate-300', 'font-medium');
+
+      const url = `screens/${screenName}.html`;
+      document.getElementById('screenFrame').src = url;
+      document.getElementById('openNewTabBtn').href = url;
+      document.getElementById('screenTitleDisplay').textContent = titles[screenName] || screenName;
+    }
+
+    function toggleViewportMode() {
+      isMobile = !isMobile;
+      const wrapper = document.getElementById('frameWrapper');
+      const container = document.getElementById('deviceContainer');
+      const viewIcon = document.getElementById('viewIcon');
+      const viewText = document.getElementById('viewText');
+      const badge = document.getElementById('deviceBadge');
+
+      if (isMobile) {
+        wrapper.className = 'w-full max-w-[420px] transition-all duration-300 flex flex-col items-center';
+        container.className = 'device-shadow rounded-[36px] overflow-hidden border border-pitch-600/40 bg-pitch-900 w-full h-[844px] relative';
+        viewIcon.textContent = 'smartphone';
+        viewText.textContent = 'Mobile View (390px)';
+        badge.classList.remove('hidden');
+      } else {
+        wrapper.className = 'w-full max-w-full transition-all duration-300 flex flex-col items-center';
+        container.className = 'rounded-xl overflow-hidden border border-pitch-700 bg-pitch-900 w-full h-[88vh] relative';
+        viewIcon.textContent = 'desktop_windows';
+        viewText.textContent = 'Responsive View';
+        badge.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

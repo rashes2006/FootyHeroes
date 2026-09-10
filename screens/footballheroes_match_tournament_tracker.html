@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pitch-Side Match Console - FootballHeroes</title>
+<!-- Google Fonts: Anybody & Space Grotesk & Lexend -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,400..900;1,400..900&amp;family=Lexend:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary": "#472a00",
+            "tertiary-fixed": "#ffddb8",
+            "secondary-fixed": "#dae2fd",
+            "on-background": "#dfe2ef",
+            "secondary-container": "#3f465c",
+            "surface-dim": "#0f131c",
+            "on-tertiary-container": "#523200",
+            "on-secondary-fixed": "#131b2e",
+            "on-surface": "#dfe2ef",
+            "secondary-fixed-dim": "#bec6e0",
+            "primary-fixed": "#6ffbbe",
+            "surface-container-lowest": "#0a0e17",
+            "error-container": "#93000a",
+            "tertiary": "#ffb95f",
+            "surface-container": "#1c1f29",
+            "primary-container": "#10b981",
+            "surface-variant": "#31353f",
+            "on-primary": "#003824",
+            "surface-container-highest": "#31353f",
+            "on-primary-fixed": "#002113",
+            "secondary": "#bec6e0",
+            "surface-container-low": "#181b25",
+            "inverse-surface": "#dfe2ef",
+            "surface-bright": "#353943",
+            "background": "#0f131c",
+            "on-surface-variant": "#bbcabf",
+            "on-primary-container": "#00422b",
+            "on-tertiary-fixed": "#2a1700",
+            "on-secondary": "#283044",
+            "primary": "#4edea3",
+            "on-primary-fixed-variant": "#005236",
+            "surface-tint": "#4edea3",
+            "on-secondary-container": "#adb4ce",
+            "on-secondary-fixed-variant": "#3f465c",
+            "primary-fixed-dim": "#4edea3",
+            "surface": "#0f131c",
+            "surface-container-high": "#262a34",
+            "outline-variant": "#3c4a42",
+            "inverse-primary": "#006c49",
+            "outline": "#86948a",
+            "tertiary-container": "#e29100",
+            "on-error": "#690005",
+            "on-error-container": "#ffdad6",
+            "inverse-on-surface": "#2c303a",
+            "tertiary-fixed-dim": "#ffb95f",
+            "on-tertiary-fixed-variant": "#653e00",
+            "error": "#ffb4ab"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "unit-md": "0.75rem",
+            "touch-target-min": "3rem",
+            "unit-xs": "0.25rem",
+            "unit-xl": "2rem",
+            "unit-lg": "1.5rem",
+            "gutter-desktop": "1.5rem",
+            "unit-base": "1rem",
+            "gutter-mobile": "1rem",
+            "unit-sm": "0.5rem",
+            "unit-2xl": "3rem",
+            "unit-2xs": "0.125rem"
+          },
+          "fontFamily": {
+            "display-score-mobile": ["Anybody"],
+            "label-lg": ["Space Grotesk"],
+            "headline-md": ["Anybody"],
+            "headline-sm": ["Anybody"],
+            "display-lg": ["Anybody"],
+            "label-match-clock": ["Space Grotesk"],
+            "label-md": ["Space Grotesk"],
+            "body-md": ["Lexend"],
+            "display-score": ["Anybody"],
+            "body-sm": ["Lexend"],
+            "display-lg-mobile": ["Anybody"],
+            "headline-lg-mobile": ["Anybody"],
+            "label-sm": ["Space Grotesk"],
+            "headline-lg": ["Anybody"],
+            "body-lg": ["Lexend"]
+          },
+          "fontSize": {
+            "display-score-mobile": ["52px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "900" }],
+            "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "display-lg": ["56px", { "lineHeight": "60px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "label-match-clock": ["28px", { "lineHeight": "32px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "display-score": ["72px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "900" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "display-lg-mobile": ["40px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Pitch-side tactile tactile glow and button clicks */
+    .touch-target-active:active {
+      transform: translateY(1px) scale(0.98);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .custom-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-md antialiased select-none pb-24">
+<!-- TopAppBar (Brand Anchor Shared Component) -->
+<header class="flex justify-between items-center w-full px-gutter-mobile h-touch-target-min border-b border-outline-variant bg-surface-dim dark:bg-surface-dim sticky top-0 z-40 shadow-sm">
+<div class="flex items-center gap-unit-sm">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="sports_soccer">sports_soccer</span>
+<span class="text-headline-sm font-headline-sm tracking-tight text-primary uppercase">FootballHeroes</span>
+</div>
+<div class="flex items-center gap-unit-sm">
+<span class="inline-flex items-center gap-1 px-unit-sm py-unit-2xs bg-error-container text-on-error-container text-label-sm font-label-sm rounded uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span>
+        LIVE
+      </span>
+<button class="p-unit-xs rounded text-on-surface-variant hover:bg-surface-variant transition-colors" title="Settings">
+<span class="material-symbols-outlined text-xl" data-icon="tune">tune</span>
+</button>
+</div>
+</header>
+<!-- Operator Match Metadata Sub-Bar -->
+<section class="bg-surface-container-low px-gutter-mobile py-unit-xs border-b border-outline-variant flex justify-between items-center text-label-md font-label-md">
+<div class="flex items-center gap-unit-xs truncate">
+<span class="material-symbols-outlined text-base text-tertiary shrink-0" data-icon="stadium">stadium</span>
+<span class="truncate text-on-surface font-semibold">Mumbai Premier League 2025 - Group A</span>
+</div>
+<div class="flex items-center gap-1.5 shrink-0 text-primary">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="text-label-sm font-label-sm text-primary">Operator: Rahul S. (Online &amp; Synced)</span>
+</div>
+</section>
+<!-- Main Content Console Workspace -->
+<main class="w-full max-w-5xl mx-auto px-gutter-mobile pt-unit-sm space-y-unit-sm">
+<!-- Sticky Scoreboard & Clock Tile -->
+<div class="bg-surface-container border border-outline-variant rounded-lg p-unit-sm shadow-md">
+<!-- Period, Stoppage & Main Timer -->
+<div class="flex justify-between items-center pb-unit-xs border-b border-outline-variant/60">
+<div class="flex items-center gap-unit-xs">
+<span class="bg-primary text-on-primary-container px-unit-sm py-unit-2xs rounded text-label-sm font-label-sm font-bold uppercase tracking-wider">2nd Half</span>
+<span class="bg-surface-variant text-on-surface-variant px-unit-xs py-unit-2xs rounded text-label-sm font-label-sm">+3' Added</span>
+</div>
+<!-- Digital Match Clock -->
+<div class="flex items-center gap-1.5 bg-surface-container-lowest px-unit-md py-unit-2xs rounded border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-sm animate-spin" data-icon="timer" style="animation-duration: 3s;">timer</span>
+<span class="font-label-match-clock text-label-match-clock text-primary tracking-wider font-bold" id="match-clock">67:42</span>
+</div>
+<!-- Quick Match State Toggles -->
+<div class="flex items-center gap-1">
+<button class="px-unit-sm py-unit-xs bg-surface-variant hover:bg-surface-bright text-on-surface rounded text-label-sm font-label-sm flex items-center gap-1 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="pause">pause</span>
+<span class="hidden sm:inline">Pause</span>
+</button>
+<button class="px-unit-sm py-unit-xs bg-surface-variant hover:bg-surface-bright text-tertiary rounded text-label-sm font-label-sm font-semibold active:scale-95 transition-all">
+            +3m
+          </button>
+<button class="px-unit-sm py-unit-xs bg-error-container text-on-error-container rounded text-label-sm font-label-sm active:scale-95 transition-all">
+            End Half
+          </button>
+</div>
+</div>
+<!-- Teams & Live Score Matrix -->
+<div class="grid grid-cols-5 items-center pt-unit-sm pb-unit-2xs">
+<!-- Team Home -->
+<div class="col-span-2 flex flex-col items-center text-center">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 border-2 border-primary flex items-center justify-center mb-1 text-primary font-bold text-label-lg font-label-lg">
+            MS
+          </div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface leading-tight">Mumbai Strikers</h2>
+<span class="text-label-sm font-label-sm text-primary font-bold">HOME TEAM</span>
+</div>
+<!-- Scoreboard Center Strike -->
+<div class="col-span-1 flex flex-col items-center justify-center">
+<div class="flex items-center gap-unit-xs">
+<span class="font-display-score-mobile text-display-score-mobile sm:font-display-score sm:text-display-score text-primary font-black">2</span>
+<span class="text-outline-variant font-display-score-mobile text-display-score-mobile">:</span>
+<span class="font-display-score-mobile text-display-score-mobile sm:font-display-score sm:text-display-score text-on-surface font-black">1</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline tracking-wider uppercase font-semibold">Match #14</span>
+</div>
+<!-- Team Away -->
+<div class="col-span-2 flex flex-col items-center text-center">
+<div class="w-10 h-10 rounded-full bg-secondary-container/50 border-2 border-secondary flex items-center justify-center mb-1 text-secondary font-bold text-label-lg font-label-lg">
+            DU
+          </div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface leading-tight">Delhi United</h2>
+<span class="text-label-sm font-label-sm text-secondary font-bold">AWAY TEAM</span>
+</div>
+</div>
+</div>
+<!-- Pitch-Side Quick Event Action Pad (2x5 High-Contrast Tactile Touch Grid) -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-unit-sm">
+<div class="flex items-center justify-between mb-unit-xs">
+<h3 class="text-label-lg font-label-lg text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-base" data-icon="touch_app">touch_app</span>
+          Quick Event Action Pad
+        </h3>
+<span class="text-label-sm font-label-sm text-outline">SELECT ACTION TO LOG</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-unit-xs">
+<!-- 1. GOAL (Heavy Solid Emerald) -->
+<button class="touch-target-active h-touch-target-min min-h-[52px] bg-primary-container text-on-primary-container rounded border-2 border-primary flex items-center justify-center gap-2 px-unit-sm shadow-sm transition-transform font-label-lg font-label-lg uppercase">
+<span class="material-symbols-outlined text-2xl" data-icon="sports_soccer">sports_soccer</span>
+<span>GOAL</span>
+</button>
+<!-- 2. YELLOW CARD -->
+<button class="touch-target-active h-touch-target-min min-h-[52px] bg-tertiary-container text-on-tertiary-container rounded border border-tertiary flex items-center justify-center gap-2 px-unit-sm transition-transform font-label-lg font-label-lg uppercase font-bold">
+<span class="w-4 h-6 bg-tertiary rounded-sm border border-black/30 shadow-inner"></span>
+<span>YELLOW</span>
+</button>
+<!-- 3. RED CARD -->
+<button class="touch-target-active h-touch-target-min min-h-[52px] bg-error-container text-on-error-container rounded border border-error flex items-center justify-center gap-2 px-unit-sm transition-transform font-label-lg font-label-lg uppercase font-bold">
+<span class="w-4 h-6 bg-error rounded-sm border border-black/30 shadow-inner"></span>
+<span>RED</span>
+</button>
+<!-- 4. SUB -->
+<button class="touch-target-active h-touch-target-min min-h-[52px] bg-surface-container-high hover:bg-surface-variant text-on-surface rounded border border-outline-variant flex items-center justify-center gap-2 px-unit-sm transition-transform font-label-lg font-label-lg uppercase">
+<span class="material-symbols-outlined text-xl text-primary" data-icon="swap_horiz">swap_horiz</span>
+<span>SUB</span>
+</button>
+<!-- 5. FOUL -->
+<button class="touch-target-active h-touch-target-min min-h-[52px] bg-surface-container-high hover:bg-surface-variant text-on-surface rounded border border-outline-variant flex items-center justify-center gap-2 px-unit-sm transition-transform font-label-lg font-label-lg uppercase">
+<span class="material-symbols-outlined text-xl text-tertiary" data-icon="warning">warning</span>
+<span>FOUL</span>
+</button>
+<!-- 6. CORNER -->
+<button class="touch-target-active h-touch-target-min min-h-[52px] bg-surface-container-high hover:bg-surface-variant text-on-surface rounded border border-outline-variant flex items-center justify-center gap-2 px-unit-sm transition-transform font-label-lg font-label-lg uppercase">
+<span class="material-symbols-outlined text-xl text-secondary" data-icon="flag">flag</span>
+<span>CORNER</span>
+</button>
+<!-- 7. PENALTY -->
+<button class="touch-target-active h-touch-target-min min-h-[52px] bg-surface-container-high hover:bg-surface-variant text-on-surface rounded border border-outline-variant flex items-center justify-center gap-2 px-unit-sm transition-transform font-label-lg font-label-lg uppercase">
+<span class="material-symbols-outlined text-xl text-primary" data-icon="sports">sports</span>
+<span>PENALTY</span>
+</button>
+<!-- 8. OFFSIDE -->
+<button class="touch-target-active h-touch-target-min min-h-[52px] bg-surface-container-high hover:bg-surface-variant text-on-surface rounded border border-outline-variant flex items-center justify-center gap-2 px-unit-sm transition-transform font-label-lg font-label-lg uppercase">
+<span class="material-symbols-outlined text-xl text-outline" data-icon="block">block</span>
+<span>OFFSIDE</span>
+</button>
+<!-- 9. INJURY -->
+<button class="touch-target-active h-touch-target-min min-h-[52px] bg-surface-container-high hover:bg-surface-variant text-on-surface rounded border border-outline-variant flex items-center justify-center gap-2 px-unit-sm transition-transform font-label-lg font-label-lg uppercase">
+<span class="material-symbols-outlined text-xl text-error" data-icon="medical_services">medical_services</span>
+<span>INJURY</span>
+</button>
+<!-- 10. FREE KICK -->
+<button class="touch-target-active h-touch-target-min min-h-[52px] bg-surface-container-high hover:bg-surface-variant text-on-surface rounded border border-outline-variant flex items-center justify-center gap-2 px-unit-sm transition-transform font-label-lg font-label-lg uppercase">
+<span class="material-symbols-outlined text-xl text-primary" data-icon="sports_handball">sports_handball</span>
+<span>FREE KICK</span>
+</button>
+</div>
+</div>
+<!-- Active Event Input Sheet / Quick Logger Drawer -->
+<div class="bg-surface-container border-2 border-primary rounded-lg p-unit-base shadow-xl space-y-unit-md relative overflow-hidden">
+<!-- Glow Accent Line -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary-fixed to-primary"></div>
+<div class="flex items-center justify-between border-b border-outline-variant pb-unit-xs">
+<div class="flex items-center gap-unit-xs">
+<span class="w-8 h-8 rounded bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-xl" data-icon="sports_soccer">sports_soccer</span>
+</span>
+<div>
+<div class="flex items-center gap-unit-xs">
+<h4 class="text-headline-sm font-headline-sm text-on-surface">Record GOAL for Mumbai Strikers</h4>
+<span class="bg-primary/20 text-primary px-unit-xs py-unit-2xs rounded text-label-sm font-label-sm font-bold">ACTIVE ENTRY</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Log verified match score increment to referee sheet</p>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-unit-xs">
+<span class="material-symbols-outlined text-2xl" data-icon="close">close</span>
+</button>
+</div>
+<!-- Scorer Selection -->
+<div class="space-y-unit-xs">
+<div class="flex justify-between items-center">
+<label class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider font-bold">Select Scorer *</label>
+<span class="text-label-sm font-label-sm text-primary">Home Squad (11 on pitch)</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-unit-xs">
+<!-- Option 1: Rahul Sharma #10 (Selected) -->
+<label class="cursor-pointer border-2 border-primary bg-primary-container/20 rounded p-unit-xs flex items-center justify-between transition-colors">
+<div class="flex items-center gap-unit-xs">
+<span class="w-6 h-6 rounded bg-primary text-on-primary font-bold text-label-sm font-label-sm flex items-center justify-center">10</span>
+<div class="leading-tight">
+<span class="text-label-md font-label-md text-on-surface block font-bold">Rahul Sharma</span>
+<span class="text-label-sm font-label-sm text-primary">FWD • 2 Goals</span>
+</div>
+</div>
+<input checked="" class="text-primary focus:ring-0 w-4 h-4 bg-surface-dim border-outline" name="scorer" type="radio"/>
+</label>
+<!-- Option 2: Arjun Singh #9 -->
+<label class="cursor-pointer border border-outline-variant bg-surface-container-high hover:border-outline rounded p-unit-xs flex items-center justify-between transition-colors">
+<div class="flex items-center gap-unit-xs">
+<span class="w-6 h-6 rounded bg-surface-variant text-on-surface font-bold text-label-sm font-label-sm flex items-center justify-center">9</span>
+<div class="leading-tight">
+<span class="text-label-md font-label-md text-on-surface block">Arjun Singh</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">ST • 0 Goals</span>
+</div>
+</div>
+<input class="text-primary focus:ring-0 w-4 h-4 bg-surface-dim border-outline" name="scorer" type="radio"/>
+</label>
+<!-- Option 3: Nikhil Roy #7 -->
+<label class="cursor-pointer border border-outline-variant bg-surface-container-high hover:border-outline rounded p-unit-xs flex items-center justify-between transition-colors">
+<div class="flex items-center gap-unit-xs">
+<span class="w-6 h-6 rounded bg-surface-variant text-on-surface font-bold text-label-sm font-label-sm flex items-center justify-center">7</span>
+<div class="leading-tight">
+<span class="text-label-md font-label-md text-on-surface block">Nikhil Roy</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">MID • 1 Goal</span>
+</div>
+</div>
+<input class="text-primary focus:ring-0 w-4 h-4 bg-surface-dim border-outline" name="scorer" type="radio"/>
+</label>
+</div>
+</div>
+<!-- Assist Selection & Match Minute Confirmation -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-unit-sm">
+<!-- Assist Provider -->
+<div class="space-y-unit-xs">
+<label class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider font-bold">Assist Provider</label>
+<div class="flex gap-unit-xs">
+<button class="flex-1 py-unit-xs px-unit-sm rounded border-2 border-primary bg-primary-container/20 text-on-surface text-label-md font-label-md font-bold flex items-center justify-center gap-unit-xs">
+<span class="w-5 h-5 rounded bg-primary text-on-primary text-label-sm font-label-sm flex items-center justify-center font-bold">9</span>
+<span>Arjun Singh #9</span>
+</button>
+<button class="py-unit-xs px-unit-md rounded border border-outline-variant bg-surface-container-high hover:bg-surface-variant text-on-surface-variant text-label-md font-label-md">
+              No Assist
+            </button>
+</div>
+</div>
+<!-- Minute Confirmation with Touch Steppers -->
+<div class="space-y-unit-xs">
+<label class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider font-bold">Match Minute</label>
+<div class="flex items-center gap-unit-xs">
+<button class="w-[52px] h-[48px] bg-surface-container-high border border-outline-variant hover:border-outline rounded text-on-surface text-headline-sm font-headline-sm font-bold flex items-center justify-center active:scale-95 transition-transform">-</button>
+<div class="flex-1 h-[48px] bg-surface-dim border border-outline-variant rounded flex items-center justify-center">
+<span class="font-label-match-clock text-headline-sm font-bold text-primary">68'</span>
+</div>
+<button class="w-[52px] h-[48px] bg-surface-container-high border border-outline-variant hover:border-outline rounded text-on-surface text-headline-sm font-headline-sm font-bold flex items-center justify-center active:scale-95 transition-transform">+</button>
+</div>
+</div>
+</div>
+<!-- Confirm Action Button Strip -->
+<div class="pt-unit-xs flex items-center gap-unit-sm">
+<button class="flex-1 h-touch-target-min bg-primary text-on-primary rounded font-label-lg font-label-lg uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg active:translate-y-px transition-all font-bold">
+<span class="material-symbols-outlined text-2xl" data-icon="check_circle">check_circle</span>
+<span>Confirm Goal (Mumbai Strikers 3 - 1)</span>
+</button>
+<button class="px-unit-lg h-touch-target-min bg-surface-variant text-on-surface rounded border border-outline-variant text-label-lg font-label-lg uppercase font-bold active:scale-95 transition-transform">
+          Cancel
+        </button>
+</div>
+</div>
+<!-- Bottom Actions Ribbon & Recent Events Log -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-unit-sm space-y-unit-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-unit-xs">
+<span class="material-symbols-outlined text-primary text-base" data-icon="history">history</span>
+<span class="text-label-md font-label-md text-on-surface font-bold uppercase tracking-wider">Live Event Stream</span>
+</div>
+<!-- Undo and Log Actions -->
+<div class="flex items-center gap-unit-xs">
+<button class="px-unit-sm py-unit-xs bg-surface-container-high hover:bg-surface-variant text-tertiary border border-outline-variant rounded text-label-sm font-label-sm flex items-center gap-1 active:scale-95 transition-all font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="undo">undo</span>
+<span>Undo Last</span>
+</button>
+<button class="px-unit-sm py-unit-xs bg-surface-container-high hover:bg-surface-variant text-on-surface-variant border border-outline-variant rounded text-label-sm font-label-sm flex items-center gap-1 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="list_alt">list_alt</span>
+<span>Full Log (14)</span>
+</button>
+</div>
+</div>
+<!-- Event Feed Strip Items -->
+<div class="space-y-1.5 pt-1">
+<!-- Event 1 -->
+<div class="flex items-center justify-between bg-surface-container px-unit-sm py-unit-xs rounded border border-outline-variant/50">
+<div class="flex items-center gap-unit-sm">
+<span class="px-unit-xs py-0.5 rounded bg-surface-variant text-primary font-label-sm font-label-sm font-bold">65'</span>
+<span class="material-symbols-outlined text-primary text-lg" data-icon="sports_soccer">sports_soccer</span>
+<span class="text-body-sm font-body-sm text-on-surface"><strong class="font-bold">Penalty scored</strong> by Arjun Singh (Mumbai Strikers)</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline">Verified</span>
+</div>
+<!-- Event 2 -->
+<div class="flex items-center justify-between bg-surface-container px-unit-sm py-unit-xs rounded border border-outline-variant/50">
+<div class="flex items-center gap-unit-sm">
+<span class="px-unit-xs py-0.5 rounded bg-surface-variant text-on-surface-variant font-label-sm font-label-sm font-bold">52'</span>
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="swap_horiz">swap_horiz</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Amit Kumar IN, Rahul Sharma OUT (Delhi United)</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline">Verified</span>
+</div>
+</div>
+<!-- Cloud Sync Confirmation Footer -->
+<div class="pt-unit-xs flex items-center justify-between border-t border-outline-variant/40 text-label-sm font-label-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-primary font-bold">All 14 events synced to cloud</span>
+</div>
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-xs" data-icon="wifi">wifi</span>
+<span>Latency: 42ms</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Brand Anchor Shared Component) -->
+<!-- Contextual Lock: 'Score' matches the current console page directly -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter-mobile h-touch-target-min bg-surface-container-lowest dark:bg-surface-container-lowest shadow-[0_-4px_16px_rgba(0,0,0,0.5)]">
+<!-- 1. Score (ACTIVE DESTINATION) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary font-bold py-unit-xs transition-transform active:scale-95" href="#score">
+<span class="material-symbols-outlined text-2xl" data-icon="scoreboard" style="font-variation-settings: 'FILL' 1;">scoreboard</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Score</span>
+</a>
+<!-- 2. Live -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant py-unit-xs hover:text-primary transition-colors active:scale-95" href="#live">
+<span class="material-symbols-outlined text-2xl" data-icon="sensors">sensors</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Live</span>
+</a>
+<!-- 3. Standings -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant py-unit-xs hover:text-primary transition-colors active:scale-95" href="#standings">
+<span class="material-symbols-outlined text-2xl" data-icon="leaderboard">leaderboard</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Standings</span>
+</a>
+<!-- 4. Squad -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant py-unit-xs hover:text-primary transition-colors active:scale-95" href="#squad">
+<span class="material-symbols-outlined text-2xl" data-icon="groups">groups</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Squad</span>
+</a>
+</nav>
+<script>
+    // Pitch-side live digital clock simulator
+    let seconds = 42;
+    let minutes = 67;
+    const clockElement = document.getElementById('match-clock');
+
+    setInterval(() => {
+      seconds++;
+      if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+      }
+      const formattedMins = String(minutes).padStart(2, '0');
+      const formattedSecs = String(seconds).padStart(2, '0');
+      if (clockElement) {
+        clockElement.textContent = `${formattedMins}:${formattedSecs}`;
+      }
+    }, 1000);
+  </script>
+</body></html>
