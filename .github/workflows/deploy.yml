@@ -1,0 +1,65 @@
+name: Deploy React App to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: client/package-lock.json
+
+      - name: Install Client Dependencies
+        run: |
+          cd client
+          npm ci
+
+      - name: Build React Client
+        env:
+          GITHUB_PAGES: 'true'
+          VITE_FIREBASE_API_KEY: "AIzaSyAJE0qHWLjMxx4G-hVTarAxcasuFWV-KYM"
+          VITE_FIREBASE_AUTH_DOMAIN: "football-scoretracker.firebaseapp.com"
+          VITE_FIREBASE_PROJECT_ID: "football-scoretracker"
+          VITE_FIREBASE_STORAGE_BUCKET: "football-scoretracker.firebasestorage.app"
+          VITE_FIREBASE_MESSAGING_SENDER_ID: "351315799863"
+          VITE_FIREBASE_APP_ID: "1:351315799863:web:0e301a9ac5d09fc025b4b2"
+          VITE_FIREBASE_MEASUREMENT_ID: "G-8KF6J0T90T"
+        run: |
+          cd client
+          npm run build
+          # Copy index.html to 404.html for GitHub Pages Single Page Application routing
+          cp dist/index.html dist/404.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'client/dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

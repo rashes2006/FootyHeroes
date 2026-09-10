@@ -17,7 +17,7 @@ export default function App() {
   return (
     <AuthProvider>
       <SocketProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
           <div className="min-h-screen bg-pitch-950 text-pitch-50 flex flex-col">
             <Navigation />
             <main className="flex-1">
