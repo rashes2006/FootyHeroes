@@ -1,4 +1,7 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+
+// On GitHub Pages there is no backend — skip API sync and use Firebase data directly.
+const HAS_BACKEND = !window.location.hostname.endsWith('.github.io');
 import { api } from '../lib/api';
 import {
   auth,
@@ -40,10 +43,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (token) {
-      api.getMe()
-        .then(data => setUser(data.user))
-        .catch(() => { localStorage.removeItem('footyheroes_token'); setToken(null); })
-        .finally(() => setIsLoading(false));
+      if (HAS_BACKEND) {
+        api.getMe()
+          .then(data => setUser(data.user))
+          .catch(() => { localStorage.removeItem('footyheroes_token'); setToken(null); })
+          .finally(() => setIsLoading(false));
+      } else {
+        // No backend on GitHub Pages — restore user from localStorage
+        const stored = localStorage.getItem('footyheroes_user');
+        if (stored) {
+          try { setUser(JSON.parse(stored)); } catch { /* ignore */ }
+        }
+        setIsLoading(false);
+      }
     } else {
       setIsLoading(false);
     }
@@ -69,15 +81,31 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     const result = await signInWithPopup(auth, googleProvider);
     const fbUser = result.user;
-    const data = await api.firebaseSync({
-      email: fbUser.email || '',
-      name: fbUser.displayName || undefined,
-      photoURL: fbUser.photoURL || undefined,
-      uid: fbUser.uid,
-    });
-    localStorage.setItem('footyheroes_token', data.token);
-    setToken(data.token);
-    setUser(data.user);
+    if (HAS_BACKEND) {
+      const data = await api.firebaseSync({
+        email: fbUser.email || '',
+        name: fbUser.displayName || undefined,
+        photoURL: fbUser.photoURL || undefined,
+        uid: fbUser.uid,
+      });
+      localStorage.setItem('footyheroes_token', data.token);
+      setToken(data.token);
+      setUser(data.user);
+    } else {
+      // GitHub Pages: no backend — store Firebase user locally
+      const localUser: User = {
+        id: fbUser.uid,
+        name: fbUser.displayName || fbUser.email || 'User',
+        email: fbUser.email || '',
+        role: 'SPECTATOR',
+        profile_image: fbUser.photoURL || undefined,
+      };
+      const fakeToken = await fbUser.getIdToken();
+      localStorage.setItem('footyheroes_token', fakeToken);
+      localStorage.setItem('footyheroes_user', JSON.stringify(localUser));
+      setToken(fakeToken);
+      setUser(localUser);
+    }
   };
 
   const loginWithFirebaseEmail = async (email: string, password: string) => {
@@ -86,15 +114,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     const result = await signInWithEmailAndPassword(auth, email, password);
     const fbUser = result.user;
-    const data = await api.firebaseSync({
-      email: fbUser.email || email,
-      name: fbUser.displayName || undefined,
-      photoURL: fbUser.photoURL || undefined,
-      uid: fbUser.uid,
-    });
-    localStorage.setItem('footyheroes_token', data.token);
-    setToken(data.token);
-    setUser(data.user);
+    if (HAS_BACKEND) {
+      const data = await api.firebaseSync({
+        email: fbUser.email || email,
+        name: fbUser.displayName || undefined,
+        photoURL: fbUser.photoURL || undefined,
+        uid: fbUser.uid,
+      });
+      localStorage.setItem('footyheroes_token', data.token);
+      setToken(data.token);
+      setUser(data.user);
+    } else {
+      const localUser: User = {
+        id: fbUser.uid,
+        name: fbUser.displayName || email,
+        email: fbUser.email || email,
+        role: 'SPECTATOR',
+      };
+      const fakeToken = await fbUser.getIdToken();
+      localStorage.setItem('footyheroes_token', fakeToken);
+      localStorage.setItem('footyheroes_user', JSON.stringify(localUser));
+      setToken(fakeToken);
+      setUser(localUser);
+    }
   };
 
   const registerWithFirebaseEmail = async (email: string, password: string, name: string) => {
@@ -103,19 +145,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     const result = await createUserWithEmailAndPassword(auth, email, password);
     const fbUser = result.user;
-    const data = await api.firebaseSync({
-      email: fbUser.email || email,
-      name: name || fbUser.displayName || undefined,
-      photoURL: fbUser.photoURL || undefined,
-      uid: fbUser.uid,
-    });
-    localStorage.setItem('footyheroes_token', data.token);
-    setToken(data.token);
-    setUser(data.user);
+    if (HAS_BACKEND) {
+      const data = await api.firebaseSync({
+        email: fbUser.email || email,
+        name: name || fbUser.displayName || undefined,
+        photoURL: fbUser.photoURL || undefined,
+        uid: fbUser.uid,
+      });
+      localStorage.setItem('footyheroes_token', data.token);
+      setToken(data.token);
+      setUser(data.user);
+    } else {
+      const localUser: User = {
+        id: fbUser.uid,
+        name: name || fbUser.displayName || email,
+        email: fbUser.email || email,
+        role: 'SPECTATOR',
+      };
+      const fakeToken = await fbUser.getIdToken();
+      localStorage.setItem('footyheroes_token', fakeToken);
+      localStorage.setItem('footyheroes_user', JSON.stringify(localUser));
+      setToken(fakeToken);
+      setUser(localUser);
+    }
   };
 
   const logout = () => {
     localStorage.removeItem('footyheroes_token');
+    localStorage.removeItem('footyheroes_user');
     setToken(null);
     setUser(null);
     if (auth && isFirebaseConfigured) {
