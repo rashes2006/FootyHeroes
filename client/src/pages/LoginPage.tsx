@@ -61,13 +61,26 @@ export default function LoginPage() {
     }
   };
 
-  // Quick login presets
+  // Quick login presets — always use direct backend login (these seeded accounts are not in Firebase)
   const presets = [
     { label: 'Scorer', email: 'scorer@footyheroes.com' },
     { label: 'Organizer', email: 'vikram@footyheroes.com' },
     { label: 'Admin', email: 'admin@footyheroes.com' },
     { label: 'Spectator', email: 'fan@footyheroes.com' },
   ];
+
+  const handleQuickLogin = async (presetEmail: string) => {
+    setError('');
+    setLoading(true);
+    try {
+      await login(presetEmail, 'password123'); // always hits backend directly
+      navigate('/');
+    } catch (err: any) {
+      setError(err.message || 'Quick login failed. Is the backend server running?');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center p-4">
@@ -183,8 +196,10 @@ export default function LoginPage() {
               <p className="text-xs font-mono text-pitch-500 mb-3">QUICK LOGIN (password: password123)</p>
               <div className="grid grid-cols-2 gap-2">
                 {presets.map(p => (
-                  <button key={p.email} onClick={() => { setEmail(p.email); setPassword('password123'); }}
-                    className="px-3 py-2 bg-pitch-800 hover:bg-pitch-700 border border-pitch-700/60 rounded-lg text-xs font-mono text-pitch-300 transition">
+                  <button key={p.email}
+                    onClick={() => handleQuickLogin(p.email)}
+                    disabled={loading}
+                    className="px-3 py-2 bg-pitch-800 hover:bg-pitch-700 border border-pitch-700/60 rounded-lg text-xs font-mono text-pitch-300 transition disabled:opacity-40">
                     {p.label}
                   </button>
                 ))}

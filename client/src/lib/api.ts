@@ -8,9 +8,19 @@ async function request(path: string, options: RequestInit = {}) {
   };
   if (token) headers['Authorization'] = `Bearer ${token}`;
 
-  const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
-  const data = await res.json();
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}${path}`, { ...options, headers });
+  } catch {
+    throw new Error('Cannot reach the server. Make sure the backend is running on port 3001.');
+  }
 
+  const contentType = res.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    throw new Error(`Server error (${res.status}): backend may be down or misconfigured.`);
+  }
+
+  const data = await res.json();
   if (!res.ok) throw new Error(data.error || 'Request failed');
   return data;
 }
